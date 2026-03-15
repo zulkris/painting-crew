@@ -1,8 +1,8 @@
-# Painting Crew — Project Summary
+# Покрасочная бригада — Project Summary
 
 ## Project
 
-Landing page for a 3-day painting business launch program.
+Landing page for a painting crew launch program (airless spraying).
 
 **File:** `index.html` — single self-contained HTML file, no build step required.
 
@@ -10,47 +10,56 @@ Landing page for a 3-day painting business launch program.
 
 | Field | Value |
 |-------|-------|
-| Product | Start Your Painting Crew in 3 Days |
-| Value proposition | Education + Equipment + Technology + Support |
-| Target audience | People wanting to start a painting business (no experience needed) |
-| Primary CTA | Book a Call |
-| Price | $10,000 (one-time, payment plans available) |
+| Product | Запуск покрасочной бригады под ключ |
+| Value proposition | Обучение + Оборудование + Практика + Поддержка |
+| Target audience | Construction crews, entrepreneurs, painters, contractors |
+| Primary CTA | Получить консультацию |
+| Price | 3 tiers (Старт / Профессиональный / Под ключ), price on request |
 | Phone | +7 900 654-68-21 |
-| Program length | 3 days |
+| Launch timeline | 7–14 days |
+| Language | Russian |
 
 ## Brand Colours
 
 | Role | Hex | Notes |
 |------|-----|-------|
-| Primary (navy blue) | `#184675` | HSL(210°, 66%, 28%) — white text contrast 8.6:1 ✅ |
-| Accent (red) | `#f70101` | HSL(0°, 99%, 49%) — used as accent only (stars, pulses) |
-| Accent CTA | `#cc0101` | Shade-600 of red — white text contrast 5.1:1 ✅ WCAG AA |
+| Primary (navy blue) | `#184675` | HSL(210°, 66%, 28%) — white text contrast 8.6:1 |
+| Accent (red) | `#f70101` | HSL(0°, 99%, 49%) — used as accent only |
+| Accent CTA | `#cc0101` | Shade-600 of red — white text contrast 5.1:1 WCAG AA |
 
 ## Page Structure
 
-1. **Nav** — sticky, dark mode toggle, mobile hamburger, "Book a Call" CTA
-2. **Hero** — headline, sub, two CTAs, social proof snippet
-3. **Trust bar** — 3 days / 200+ businesses / 4 pillars / $10K
-4. **What You Get** — 4 pillars: Education, Equipment, Technology, Support
-5. **3-Day Journey** — Day 1 (Foundation), Day 2 (Skills), Day 3 (Launch)
-6. **Pricing** — $10,000 all-inclusive card with feature checklist
-7. **Testimonials** — 3 cards with star ratings
-8. **Book a Call** — form (name, email, phone) + direct phone link
-9. **FAQ** — 5 questions, schema.org FAQPage markup
-10. **Footer** — phone, privacy/terms placeholders, copyright
+1. **Nav** — sticky, dark mode toggle, mobile hamburger, "Получить консультацию" CTA
+2. **Hero** — headline, sub, 3 key benefits, two CTAs
+3. **Для кого** — 4 target audience cards (crew, entrepreneur, painter, contractor)
+4. **Заработок** — earnings economics + example project cards
+5. **Что входит** — 4 pillars: training, equipment, practice, post-training support
+6. **Как проходит** — 4-step timeline (consult, equip, train, launch)
+7. **Примеры работ** — 3 project case study cards (facade, warehouse, interior)
+8. **Оборудование** — starter kit checklist + image placeholder
+9. **Скорость** — speed comparison bars (brush/roller/airless spraying)
+10. **Отзывы** — case study testimonial block
+11. **Стоимость** — 3 pricing tiers (Старт / Профессиональный / Под ключ)
+12. **FAQ** — 4 questions
+13. **Финальный CTA** — consultation form (name, phone, email) + phone link
+14. **Footer** — branding, privacy link, phone, copyright
 
 ## Tech Stack
 
 - Tailwind CSS via CDN (no build step)
-- Vanilla JS — dark mode toggle (localStorage), mobile menu
+- Google Fonts: Unbounded (display), Onest (body)
+- Vanilla JS — dark mode (localStorage), mobile menu, IntersectionObserver for speed bars
 - Single `index.html` — deployable anywhere
 
 ## Placeholders to Replace
 
-- Testimonial names, quotes, and company names
+- Earnings figures (X ₽ / м², XXX ₽ per project)
+- Case study areas and timelines (XXX м², X дней)
+- Equipment photo in starter kit section
+- Case study photos in examples section
 - `og-image.jpg` (OG social share image)
 - Form `action` attribute (wire to backend / Tally / Typeform)
-- Privacy Policy and Terms pages
+- Privacy Policy page
 - Canonical URL (`https://paintingcrew.com`)
 
 ## Preview
