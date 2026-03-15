@@ -4,7 +4,6 @@ kill_signal = "SIGTERM"
 kill_timeout = 5
 
 [build]
-  dockerfile = "Dockerfile"
   build-target = "runner"
 
 [deploy]
@@ -12,10 +11,10 @@ kill_timeout = 5
 
 [env]
   PHX_HOST = "painting-crew.fly.dev"
-  PORT = "8080"
+  PORT = "4000"
 
 [http_service]
-  internal_port = 8080
+  internal_port = 4000
   force_https = true
   auto_stop_machines = "stop"
   auto_start_machines = true
