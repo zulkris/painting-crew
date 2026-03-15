@@ -17,7 +17,15 @@
       "Bash(mkdir:*)",
       "Bash(rm:*)",
       "Bash(mix compile:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(chmod:*)",
+      "Bash(DB_HOST=localhost mix compile 2>&1)",
+      "Bash(pg_isready -h localhost 2>&1 || docker compose up -d db 2>&1)",
+      "Bash(docker compose:*)",
+      "Bash(PGPASSWORD=postgres psql -h localhost -U postgres -c \"SELECT 1\" 2>&1)",
+      "Bash(docker pull:*)",
+      "Bash(ls:*)",
+      "Bash(git commit:*)"
     ]
   }
 }
