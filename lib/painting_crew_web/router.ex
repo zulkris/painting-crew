@@ -17,7 +17,16 @@ defmodule PaintingCrewWeb.Router do
   scope "/", PaintingCrewWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    live "/", LandingLive
+  end
+
+  scope "/admin", PaintingCrewWeb do
+    pipe_through :browser
+
+    get "/login", AdminController, :login
+    post "/login", AdminController, :do_login
+    get "/logout", AdminController, :logout
+    get "/", AdminController, :index
   end
 
   # Other scopes may use custom stacks.

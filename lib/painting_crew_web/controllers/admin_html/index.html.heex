@@ -1,0 +1,43 @@
+<div class="min-h-screen bg-primary-50">
+  <header class="bg-white border-b border-primary-100 px-6 py-4">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      <h1 class="font-display text-xl font-bold text-primary-900">Заявки</h1>
+      <a href={~p"/admin/logout"} class="text-sm text-primary-500 hover:text-primary-700 transition-colors">Выйти</a>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-6 py-8">
+    <%= if @submissions == [] do %>
+      <div class="bg-white rounded-2xl border border-primary-100 p-12 text-center">
+        <p class="text-primary-400 text-lg">Заявок пока нет</p>
+      </div>
+    <% else %>
+      <div class="bg-white rounded-2xl border border-primary-100 overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-primary-50 text-primary-600">
+            <tr>
+              <th class="px-6 py-3 text-left font-medium">Дата</th>
+              <th class="px-6 py-3 text-left font-medium">Имя</th>
+              <th class="px-6 py-3 text-left font-medium">Телефон</th>
+              <th class="px-6 py-3 text-left font-medium">Email</th>
+              <th class="px-6 py-3 text-left font-medium">Источник</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-primary-100">
+            <%= for sub <- @submissions do %>
+              <tr class="hover:bg-primary-50/50 transition-colors">
+                <td class="px-6 py-4 text-primary-500"><%= Calendar.strftime(sub.inserted_at, "%d.%m.%Y %H:%M") %></td>
+                <td class="px-6 py-4 font-medium text-primary-900"><%= sub.name %></td>
+                <td class="px-6 py-4">
+                  <a href={"tel:#{sub.phone}"} class="text-primary hover:underline"><%= sub.phone %></a>
+                </td>
+                <td class="px-6 py-4 text-primary-500"><%= sub.email || "—" %></td>
+                <td class="px-6 py-4 text-primary-400"><%= sub.source %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+  </main>
+</div>

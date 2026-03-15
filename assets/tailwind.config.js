@@ -11,11 +11,44 @@ module.exports = {
     "../lib/painting_crew_web.ex",
     "../lib/painting_crew_web/**/*.*ex"
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
         brand: "#FD4F00",
-      }
+        primary: {
+          50:  '#eef4fb',
+          100: '#d9e8f7',
+          200: '#b1ceee',
+          300: '#75a8de',
+          400: '#3a82cc',
+          500: '#1c61b0',
+          600: '#174f90',
+          700: '#133f73',
+          800: '#184675',
+          900: '#0a2147',
+          950: '#051025',
+          DEFAULT: '#184675',
+        },
+        accent: {
+          50:  '#fff0f0',
+          100: '#ffd6d6',
+          200: '#ffadad',
+          300: '#ff7070',
+          400: '#ff3333',
+          500: '#f70101',
+          600: '#cc0101',
+          700: '#a30000',
+          800: '#7a0000',
+          900: '#520000',
+          950: '#290000',
+          DEFAULT: '#f70101',
+        },
+      },
+      fontFamily: {
+        display: ['Unbounded', 'sans-serif'],
+        sans: ['Onest', 'system-ui', 'sans-serif'],
+      },
     },
   },
   plugins: [

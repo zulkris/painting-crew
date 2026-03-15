@@ -3,3 +3,51 @@
 @import "tailwindcss/utilities";
 
 /* This file is for your main application CSS */
+
+/* Skip link */
+.skip-link { position: absolute; left: -9999px; }
+.skip-link:focus { left: 1rem; top: 1rem; z-index: 9999; }
+
+/* FAQ icon rotation */
+details[open] .faq-icon { transform: rotate(45deg); }
+.faq-icon { transition: transform 0.2s ease; }
+
+/* Diagonal stripe texture for hero */
+.hero-stripes {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 40px,
+    rgba(255,255,255,0.015) 40px,
+    rgba(255,255,255,0.015) 80px
+  );
+}
+
+/* Speed comparison bar animation */
+.speed-bar {
+  animation: grow-bar 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  transform-origin: left;
+  transform: scaleX(0);
+  animation-play-state: paused;
+}
+@keyframes grow-bar {
+  to { transform: scaleX(1); }
+}
+
+/* Noise grain overlay */
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* Pricing card glow */
+.pricing-glow {
+  box-shadow: 0 0 60px -12px rgba(24, 70, 117, 0.25);
+}
+.dark .pricing-glow {
+  box-shadow: 0 0 60px -12px rgba(58, 130, 204, 0.15);
+}

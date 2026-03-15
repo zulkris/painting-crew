@@ -61,6 +61,18 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+# Notifier
+config :painting_crew, PaintingCrew.Notifier,
+  from: "noreply@example.com",
+  to: nil,
+  telegram_bot_token: nil,
+  telegram_chat_id: nil
+
+# Admin panel
+config :painting_crew, :admin,
+  user: "admin",
+  pass: "admin"
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"

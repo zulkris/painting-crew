@@ -115,7 +115,7 @@ defmodule PaintingCrewWeb.CoreComponents do
       phx-click={JS.push("lv:clear-flash", value: %{key: @kind}) |> hide("##{@id}")}
       role="alert"
       class={[
-        "fixed top-2 right-2 mr-2 w-80 sm:w-96 z-50 rounded-lg p-3 ring-1",
+        "fixed top-2 right-2 mr-2 w-80 sm:w-96 z-[60] rounded-lg p-3 ring-1",
         @kind == :info && "bg-emerald-50 text-emerald-800 ring-emerald-500 fill-cyan-900",
         @kind == :error && "bg-rose-50 text-rose-900 shadow-md ring-rose-500 fill-rose-900"
       ]}
@@ -147,8 +147,8 @@ defmodule PaintingCrewWeb.CoreComponents do
   def flash_group(assigns) do
     ~H"""
     <div id={@id}>
-      <.flash kind={:info} title={gettext("Success!")} flash={@flash} />
-      <.flash kind={:error} title={gettext("Error!")} flash={@flash} />
+      <.flash kind={:info} title="Получилось!" flash={@flash} />
+      <.flash kind={:error} title={gettext("Ошибка!")} flash={@flash} />
       <.flash
         id="client-error"
         kind={:error}

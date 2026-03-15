@@ -1,0 +1,21 @@
+FROM elixir:1.19
+
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    git \
+    inotify-tools \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+RUN mix local.hex --force && mix local.rebar --force
+
+COPY mix.exs ./
+COPY mix.lock* ./
+RUN mix deps.get
+
+COPY . .
+
+EXPOSE 4000
+
+CMD ["sh", "-c", "mix setup && mix phx.server"]

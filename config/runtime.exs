@@ -21,20 +21,11 @@ if System.get_env("PHX_SERVER") do
 end
 
 if config_env() == :prod do
-  database_url =
-    System.get_env("DATABASE_URL") ||
-      raise """
-      environment variable DATABASE_URL is missing.
-      For example: ecto://USER:PASS@HOST/DATABASE
-      """
-
-  maybe_ipv6 = if System.get_env("ECTO_IPV6") in ~w(true 1), do: [:inet6], else: []
+  database_path =
+    System.get_env("DATABASE_PATH") || "/app/painting_crew_prod.db"
 
   config :painting_crew, PaintingCrew.Repo,
-    # ssl: true,
-    url: database_url,
-    pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
-    socket_options: maybe_ipv6
+    database: database_path
 
   # The secret key base is used to sign/encrypt cookies and other secrets.
   # A default value is used in config/dev.exs and config/test.exs but you
@@ -114,4 +105,28 @@ if config_env() == :prod do
   #     config :swoosh, :api_client, Swoosh.ApiClient.Hackney
   #
   # See https://hexdocs.pm/swoosh/Swoosh.html#module-installation for details.
+
+  # Admin credentials
+  config :painting_crew, :admin,
+    user: System.get_env("ADMIN_USER", "admin"),
+    pass: System.get_env("ADMIN_PASS") ||
+      raise("ADMIN_PASS environment variable is required in production")
+
+  # Notifications
+  config :painting_crew, PaintingCrew.Notifier,
+    from: System.get_env("NOTIFY_FROM", "noreply@example.com"),
+    to: System.get_env("NOTIFY_TO"),
+    telegram_bot_token: System.get_env("TELEGRAM_BOT_TOKEN"),
+    telegram_chat_id: System.get_env("TELEGRAM_CHAT_ID")
+
+  # SMTP mailer for production
+  if smtp_host = System.get_env("SMTP_HOST") do
+    config :painting_crew, PaintingCrew.Mailer,
+      adapter: Swoosh.Adapters.SMTP,
+      relay: smtp_host,
+      port: String.to_integer(System.get_env("SMTP_PORT", "587")),
+      username: System.get_env("SMTP_USER"),
+      password: System.get_env("SMTP_PASS"),
+      tls: :always
+  end
 end
