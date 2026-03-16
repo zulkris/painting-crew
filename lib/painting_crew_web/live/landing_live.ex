@@ -10,7 +10,7 @@ defmodule PaintingCrewWeb.LandingLive do
 
     {:ok,
      socket
-     |> assign(:page_title, "Запуск покрасочной бригады под ключ")
+     |> assign(:page_title, "БригСтарт — Запуск покрасочной бригады под ключ")
      |> assign(:form, to_form(changeset))
      |> assign(:submitted, false)}
   end
@@ -55,11 +55,11 @@ defmodule PaintingCrewWeb.LandingLive do
     </a>
 
     <%!-- NAV --%>
-    <header class="sticky top-0 z-50 bg-white/90 dark:bg-[#051025]/90 backdrop-blur border-b border-primary-100 dark:border-primary-900">
+    <header class="sticky top-0 z-50 bg-white/90 dark:bg-[#051025]/90 backdrop-blur border-b border-primary-200 dark:border-primary-900">
       <nav class="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16" aria-label="Главная навигация">
         <a href="#" class="flex items-center gap-2.5 font-display font-bold text-lg text-primary dark:text-white tracking-tight">
-          <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-primary text-white text-sm font-extrabold rotate-[-2deg]">ПБ</span>
-          <span class="hidden sm:inline">Покрасочная бригада</span>
+          <img src={~p"/images/logo.svg"} alt="" class="w-8 h-8" />
+          <span class="hidden sm:inline">БригСтарт</span>
         </a>
 
         <ul class="hidden md:flex items-center gap-6 text-sm font-medium text-primary-700 dark:text-primary-300">
@@ -96,7 +96,7 @@ defmodule PaintingCrewWeb.LandingLive do
         </div>
       </nav>
 
-      <div id="mobile-menu" class="hidden md:hidden border-t border-primary-100 dark:border-primary-900 bg-white dark:bg-[#051025] px-4 pb-4">
+      <div id="mobile-menu" class="hidden md:hidden border-t border-primary-200 dark:border-primary-900 bg-white dark:bg-[#051025] px-4 pb-4">
         <ul class="flex flex-col gap-1 pt-3 text-sm font-medium">
           <li><a href="#what-you-get" class="block py-2 px-3 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900 transition-colors">Что входит</a></li>
           <li><a href="#how-it-works" class="block py-2 px-3 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900 transition-colors">Как проходит</a></li>
@@ -161,7 +161,7 @@ defmodule PaintingCrewWeb.LandingLive do
       </section>
 
       <%!-- 2. ДЛЯ КОГО --%>
-      <section id="audience" class="py-20 lg:py-28 border-b border-primary-100 dark:border-primary-900">
+      <section id="audience" class="py-20 lg:py-28 border-b border-primary-200 dark:border-primary-900">
         <div class="max-w-6xl mx-auto px-4 sm:px-6">
           <div class="text-center mb-14">
             <h2 class="font-display text-3xl sm:text-4xl font-extrabold mb-4 text-primary-900 dark:text-white tracking-tight">Для кого это</h2>
@@ -184,14 +184,14 @@ defmodule PaintingCrewWeb.LandingLive do
             <p class="text-primary-500 dark:text-primary-300 text-lg max-w-2xl mx-auto">Экономика покрасочной бригады — примерная модель на реальных объектах.</p>
           </div>
           <div class="grid lg:grid-cols-2 gap-8">
-            <div class="bg-white dark:bg-[#051025] rounded-2xl p-8 border border-primary-100 dark:border-primary-800">
+            <div class="bg-white dark:bg-[#051025] rounded-2xl p-8 border border-primary-200 dark:border-primary-800">
               <h3 class="font-display text-lg font-bold mb-6 text-primary-900 dark:text-white">Экономика бригады</h3>
               <dl class="space-y-4">
-                <div class="flex justify-between items-center py-3 border-b border-primary-100 dark:border-primary-800">
+                <div class="flex justify-between items-center py-3 border-b border-primary-200 dark:border-primary-800">
                   <dt class="text-primary-600 dark:text-primary-300 text-sm">Средняя площадь объекта</dt>
                   <dd class="font-bold text-primary-900 dark:text-white">300–1 000 м²</dd>
                 </div>
-                <div class="flex justify-between items-center py-3 border-b border-primary-100 dark:border-primary-800">
+                <div class="flex justify-between items-center py-3 border-b border-primary-200 dark:border-primary-800">
                   <dt class="text-primary-600 dark:text-primary-300 text-sm">Средняя цена работ</dt>
                   <dd class="font-bold text-primary-900 dark:text-white">от X ₽ / м²</dd>
                 </div>
@@ -288,7 +288,7 @@ defmodule PaintingCrewWeb.LandingLive do
                 <.equipment_item text="Базовые расходные материалы" />
               </ul>
             </div>
-            <div class="aspect-square bg-white dark:bg-[#051025] rounded-2xl border border-primary-100 dark:border-primary-800 flex items-center justify-center">
+            <div class="aspect-square bg-white dark:bg-[#051025] rounded-2xl border border-primary-200 dark:border-primary-800 flex items-center justify-center">
               <svg class="w-24 h-24 text-primary-200 dark:text-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
             </div>
           </div>
@@ -345,7 +345,7 @@ defmodule PaintingCrewWeb.LandingLive do
           <div class="text-center mb-14">
             <h2 class="font-display text-3xl sm:text-4xl font-extrabold mb-4 text-primary-900 dark:text-white tracking-tight">Отзывы и кейсы</h2>
           </div>
-          <div class="bg-white dark:bg-[#051025] rounded-2xl p-8 sm:p-10 border border-primary-100 dark:border-primary-800 relative overflow-hidden">
+          <div class="bg-white dark:bg-[#051025] rounded-2xl p-8 sm:p-10 border border-primary-200 dark:border-primary-800 relative overflow-hidden">
             <div class="absolute top-6 right-8 text-primary-100 dark:text-primary-800" aria-hidden="true">
               <svg class="w-20 h-20" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
             </div>
@@ -372,7 +372,7 @@ defmodule PaintingCrewWeb.LandingLive do
           </div>
           <div class="grid md:grid-cols-3 gap-6">
             <%!-- Старт --%>
-            <div class="bg-white dark:bg-primary-900 rounded-2xl border border-primary-100 dark:border-primary-800 p-8 flex flex-col">
+            <div class="bg-white dark:bg-primary-900 rounded-2xl border border-primary-200 dark:border-primary-800 p-8 flex flex-col">
               <h3 class="font-display text-xl font-bold text-primary-900 dark:text-white mb-2">Старт</h3>
               <p class="text-primary-500 dark:text-primary-400 text-sm mb-6 leading-relaxed">Обучение технологии и начальная консультация.</p>
               <ul class="space-y-3 text-sm text-primary-600 dark:text-primary-300 mb-8 flex-1">
@@ -496,12 +496,12 @@ defmodule PaintingCrewWeb.LandingLive do
     </main>
 
     <%!-- FOOTER --%>
-    <footer class="border-t border-primary-100 dark:border-primary-900 bg-white dark:bg-[#051025] py-10">
+    <footer class="border-t border-primary-200 dark:border-primary-900 bg-white dark:bg-[#051025] py-10">
       <div class="max-w-6xl mx-auto px-4 sm:px-6">
         <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
           <div class="flex items-center gap-2.5 font-display font-bold text-primary dark:text-white">
-            <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-primary text-white text-xs font-extrabold rotate-[-2deg]" aria-hidden="true">ПБ</span>
-            Покрасочная бригада
+            <img src={~p"/images/logo.svg"} alt="" class="w-7 h-7" aria-hidden="true" />
+            БригСтарт
           </div>
           <nav aria-label="Навигация подвала">
             <ul class="flex flex-wrap justify-center gap-4 sm:gap-6 text-sm text-primary-500 dark:text-primary-400">
@@ -510,7 +510,7 @@ defmodule PaintingCrewWeb.LandingLive do
             </ul>
           </nav>
           <p class="text-sm text-primary-400 dark:text-primary-500">
-            &copy; <%= Date.utc_today().year %> Покрасочная бригада
+            &copy; <%= Date.utc_today().year %> БригСтарт
           </p>
         </div>
       </div>
@@ -526,7 +526,7 @@ defmodule PaintingCrewWeb.LandingLive do
 
   defp audience_card(assigns) do
     ~H"""
-    <div class="group relative p-6 rounded-2xl border border-primary-100 dark:border-primary-800 hover:border-primary/40 transition-all bg-white dark:bg-primary-900 overflow-hidden">
+    <div class="group relative p-6 rounded-2xl border border-primary-200 dark:border-primary-800 hover:border-primary/40 transition-all bg-white dark:bg-primary-900 overflow-hidden">
       <div class="absolute top-0 right-0 w-24 h-24 bg-primary-50 dark:bg-primary-800/50 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform" aria-hidden="true"></div>
       <div class="relative">
         <div class="w-12 h-12 rounded-xl bg-primary-100 dark:bg-primary-800 flex items-center justify-center mb-4" aria-hidden="true">
@@ -572,7 +572,7 @@ defmodule PaintingCrewWeb.LandingLive do
 
   defp pillar_card(assigns) do
     ~H"""
-    <div class="p-8 rounded-2xl border border-primary-100 dark:border-primary-800 hover:shadow-lg hover:shadow-primary/5 transition-all bg-white dark:bg-primary-900">
+    <div class="p-8 rounded-2xl border border-primary-200 dark:border-primary-800 hover:shadow-lg hover:shadow-primary/5 transition-all bg-white dark:bg-primary-900">
       <div class="flex items-start gap-4">
         <div class="w-12 h-12 rounded-xl bg-primary-100 dark:bg-primary-800 flex items-center justify-center shrink-0" aria-hidden="true">
           <span class="font-display font-extrabold text-primary text-lg"><%= @num %></span>
@@ -619,7 +619,7 @@ defmodule PaintingCrewWeb.LandingLive do
 
   defp example_card(assigns) do
     ~H"""
-    <div class="group bg-white dark:bg-primary-900 rounded-2xl border border-primary-100 dark:border-primary-800 overflow-hidden hover:shadow-lg transition-shadow">
+    <div class="group bg-white dark:bg-primary-900 rounded-2xl border border-primary-200 dark:border-primary-800 overflow-hidden hover:shadow-lg transition-shadow">
       <div class="aspect-[4/3] bg-primary-100 dark:bg-primary-800 flex items-center justify-center">
         <svg class="w-16 h-16 text-primary-300 dark:text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
       </div>
@@ -665,7 +665,7 @@ defmodule PaintingCrewWeb.LandingLive do
 
   defp faq_item(assigns) do
     ~H"""
-    <details class="group border border-primary-100 dark:border-primary-800 rounded-xl overflow-hidden bg-white dark:bg-[#051025]">
+    <details class="group border border-primary-200 dark:border-primary-800 rounded-xl overflow-hidden bg-white dark:bg-[#051025]">
       <summary class="flex items-center justify-between gap-4 px-6 py-4 cursor-pointer select-none hover:bg-primary-50 dark:hover:bg-primary-900 transition-colors">
         <span class="font-semibold text-sm sm:text-base text-primary-900 dark:text-white"><%= @question %></span>
         <span class="faq-icon shrink-0 text-primary text-xl leading-none" aria-hidden="true">+</span>

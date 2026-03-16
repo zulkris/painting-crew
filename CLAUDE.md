@@ -1,4 +1,4 @@
-# Покрасочная бригада — Project Summary
+# БригСтарт — Project Summary
 
 ## Project
 
@@ -27,14 +27,15 @@ Landing page for a painting crew launch program (airless spraying), built as a P
 
 ## Tech Stack
 
-- **Phoenix 1.7** with LiveView
-- **Ecto** + PostgreSQL
+- **Elixir ~> 1.18** (1.19 in production Dockerfile)
+- **Phoenix 1.8** with LiveView
+- **Ecto** + **SQLite3** (via `ecto_sqlite3`)
 - **Tailwind CSS 3.4** (build-time via Phoenix tailwind)
 - **Google Fonts**: Unbounded (display), Onest (body)
 - **Swoosh** for email notifications
 - **Req** for Telegram notifications
-- **Docker Compose** for local development
-- **Fly.io** for production deployment
+- **Docker Compose** for local development (single app container, no separate DB)
+- **Fly.io** for production deployment (persistent volume for SQLite DB)
 
 ## Project Structure
 
@@ -65,10 +66,10 @@ assets/
 └── js/app.js                      # LiveView hooks (DarkMode, MobileMenu, SpeedBar)
 config/
 ├── config.exs                     # Notifier + admin defaults
-├── dev.exs                        # DB hostname via DB_HOST env (default: "db")
-├── test.exs                       # DB hostname via DB_HOST env (default: "db")
+├── dev.exs                        # SQLite dev DB path, watchers, live reload
+├── test.exs                       # SQLite test DB path
 ├── prod.exs                       # Production static config
-└── runtime.exs                    # Prod secrets (DATABASE_URL, SMTP, Telegram, admin)
+└── runtime.exs                    # Prod secrets (DATABASE_PATH, SMTP, Telegram, admin)
 ```
 
 ## Page Sections (Landing LiveView)
@@ -102,29 +103,27 @@ config/
 ## Docker Development
 
 ```bash
-# Start all services
+# Start the app (SQLite DB is embedded, no separate DB service)
 docker compose up --build
 
 # Run tests inside container
 docker compose exec painting_crew_app mix test
-
-# Just the database
-docker compose up -d db
 ```
 
-Container names: `painting_crew_db` (PostgreSQL 16), `painting_crew_app` (Elixir dev server).
-
-DB config uses `DB_HOST` env var (defaults to `"db"` for Docker networking).
+Single container: `painting_crew_app` (Elixir dev server with embedded SQLite).
 
 ## Production (Fly.io)
+
+Deployed with SQLite on a persistent volume (`/data`). VM: `shared-cpu-1x`, 256MB RAM, region `ams`.
 
 ```bash
 fly launch --no-deploy
 fly secrets set SECRET_KEY_BASE=$(mix phx.gen.secret)
-fly secrets set DATABASE_URL=ecto://...
 fly secrets set ADMIN_PASS=...
 fly deploy
 ```
+
+The `DATABASE_PATH` defaults to `/data/painting_crew_prod.db`. Migrations run automatically via `release_command` in `fly.toml`.
 
 ## Environment Variables
 
@@ -132,15 +131,18 @@ See `.env.example` for full list. Key ones:
 
 | Variable | Required | Description |
 |----------|----------|-------------|
-| `DATABASE_URL` | prod | PostgreSQL connection URL |
+| `DATABASE_PATH` | no | SQLite DB file path (default: `/data/painting_crew_prod.db`) |
 | `SECRET_KEY_BASE` | prod | Phoenix secret key |
 | `ADMIN_PASS` | prod | Admin panel password |
 | `ADMIN_USER` | no | Admin username (default: "admin") |
+| `NOTIFY_FROM` | no | Sender email address (default: "noreply@example.com") |
 | `NOTIFY_TO` | no | Email recipient for notifications |
 | `TELEGRAM_BOT_TOKEN` | no | Telegram bot token |
 | `TELEGRAM_CHAT_ID` | no | Telegram chat ID |
 | `SMTP_HOST` | no | SMTP server for prod email |
-| `DB_HOST` | no | Database hostname (default: "db") |
+| `SMTP_PORT` | no | SMTP port (default: 587) |
+| `SMTP_USER` | no | SMTP username |
+| `SMTP_PASS` | no | SMTP password |
 
 ## Placeholders to Replace
 

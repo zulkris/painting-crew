@@ -4,7 +4,11 @@ kill_signal = "SIGTERM"
 kill_timeout = 5
 
 [build]
-  build-target = "runner"
+  dockerfile = "Dockerfile"
+
+[mounts]
+  source = "data"
+  destination = "/data"
 
 [deploy]
   release_command = "/app/bin/migrate"
@@ -12,6 +16,7 @@ kill_timeout = 5
 [env]
   PHX_HOST = "painting-crew.fly.dev"
   PORT = "4000"
+  DATABASE_PATH = "/data/painting_crew_prod.db"
 
 [http_service]
   internal_port = 4000

@@ -31,10 +31,10 @@ COPY rel rel
 RUN mix release
 
 # Runner stage
-FROM debian:bookworm-slim AS runner
+FROM debian:trixie-slim AS runner
 
 RUN apt-get update -y && \
-    apt-get install -y libstdc++6 openssl libncurses5 locales ca-certificates \
+    apt-get install -y libstdc++6 openssl libncurses6 locales ca-certificates \
     && apt-get clean && rm -f /var/lib/apt/lists/*_*
 
 RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
@@ -44,7 +44,7 @@ ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
 WORKDIR "/app"
-RUN chown nobody /app
+RUN mkdir -p /data && chown nobody:root /app /data
 
 ENV MIX_ENV="prod"
 

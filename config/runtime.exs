@@ -22,7 +22,7 @@ end
 
 if config_env() == :prod do
   database_path =
-    System.get_env("DATABASE_PATH") || "/app/painting_crew_prod.db"
+    System.get_env("DATABASE_PATH") || "/data/painting_crew_prod.db"
 
   config :painting_crew, PaintingCrew.Repo,
     database: database_path

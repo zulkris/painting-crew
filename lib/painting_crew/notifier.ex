@@ -17,7 +17,7 @@ defmodule PaintingCrew.Notifier do
 
     if to do
       new()
-      |> from({"Покрасочная бригада", from})
+      |> from({"БригСтарт", from})
       |> to(to)
       |> subject("Новая заявка: #{submission.name}")
       |> text_body(email_body(submission))
