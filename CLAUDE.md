@@ -62,8 +62,8 @@ lib/
 │   └── router.ex                  # Routes: / (LiveView), /admin/*
 assets/
 ├── tailwind.config.js             # Brand colours (primary/accent), fonts
-├── css/app.css                    # Custom CSS (grain, stripes, speed-bar)
-└── js/app.js                      # LiveView hooks (DarkMode, MobileMenu, SpeedBar)
+├── css/app.css                    # Custom CSS (grain, stripes, speed-bar, spray overlay)
+└── js/app.js                      # LiveView hooks (DarkMode, MobileMenu, SpeedBar, SprayPainter)
 config/
 ├── config.exs                     # Notifier + admin defaults
 ├── dev.exs                        # SQLite dev DB path, watchers, live reload
@@ -143,6 +143,23 @@ See `.env.example` for full list. Key ones:
 | `SMTP_PORT` | no | SMTP port (default: 587) |
 | `SMTP_USER` | no | SMTP username |
 | `SMTP_PASS` | no | SMTP password |
+
+## Spray Painter Animation
+
+Desktop-only scroll-driven animation (SprayPainter LiveView hook). A spray gun image follows the user's scroll, "painting" each section with a rainbow gradient overlay.
+
+**Architecture:**
+- `#spray-painter` — fixed-position container with animated spray gun frames (11 webp images)
+- `.spray-overlay` on each `[data-spray-section]` — two pseudo-elements:
+  - `::after` (z-index 2) — solid painted area, clean gradient fill, no noise
+  - `::before` (z-index 1) — spray edge band only, gradient + SVG feTurbulence noise mask (`mask-composite: intersect`) for particle scatter
+- Soft blend zone between solid and noisy layers (no sharp seam)
+- Rainbow gradient flows across full page via `background-size: 100% var(--page-h)` + per-section `--section-top` offset
+- Reverse scroll un-paints sections (no permanent state)
+- Last section uses adjusted progress calc to complete at page bottom
+- Cursor proximity fades the painter image (250px→80px range)
+- `data-spray-dir="rtl|ltr"` per section controls paint direction
+- Respects `prefers-reduced-motion`
 
 ## Placeholders to Replace
 

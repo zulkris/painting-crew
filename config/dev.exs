@@ -52,7 +52,7 @@ config :painting_crew, PaintingCrewWeb.Endpoint,
 config :painting_crew, PaintingCrewWeb.Endpoint,
   live_reload: [
     patterns: [
-      ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",
+      ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg|webp)$",
       ~r"priv/gettext/.*(po)$",
       ~r"lib/painting_crew_web/(controllers|live|components)/.*(ex|heex)$"
     ]

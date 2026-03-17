@@ -111,8 +111,22 @@ defmodule PaintingCrewWeb.LandingLive do
     </header>
 
     <main id="main">
+      <%!-- SPRAY GUN ANIMATION (desktop only) --%>
+      <div id="spray-painter" phx-hook="SprayPainter"
+        class="hidden md:block fixed top-0 left-0 w-full h-full z-40 pointer-events-none"
+        aria-hidden="true"
+        data-frame-urls={Jason.encode!(Enum.map(1..11, fn i -> "/images/spray/#{i}.webp" end))}>
+        <img
+          src={~p"/images/spray/1.webp"}
+          alt=""
+          class="absolute w-[40vw] max-w-[500px]"
+          style="top: 10%; left: 85%; transform: translate(-50%, -50%) scaleX(-1);"
+        />
+      </div>
+
       <%!-- 1. HERO --%>
-      <section class="relative overflow-hidden bg-[#051025] text-white hero-stripes grain">
+      <section data-spray-section data-spray-dir="rtl" class="relative overflow-hidden bg-[#051025] text-white hero-stripes grain">
+        <div class="spray-overlay" aria-hidden="true"></div>
         <div class="absolute inset-0 opacity-20" aria-hidden="true">
           <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-primary-600 rounded-full blur-[120px] translate-x-1/3 -translate-y-1/3"></div>
           <div class="absolute bottom-0 left-0 w-96 h-96 bg-accent-600 rounded-full blur-[100px] -translate-x-1/3 translate-y-1/3"></div>
@@ -161,7 +175,8 @@ defmodule PaintingCrewWeb.LandingLive do
       </section>
 
       <%!-- 2. ДЛЯ КОГО --%>
-      <section id="audience" class="py-20 lg:py-28 border-b border-primary-200 dark:border-primary-900">
+      <section id="audience" data-spray-section data-spray-dir="ltr" class="py-20 lg:py-28 border-b border-primary-200 dark:border-primary-900">
+        <div class="spray-overlay" aria-hidden="true"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
           <div class="text-center mb-14">
             <h2 class="font-display text-4xl sm:text-5xl font-extrabold mb-4 text-primary-900 dark:text-white tracking-tight">Для кого это</h2>
@@ -177,7 +192,8 @@ defmodule PaintingCrewWeb.LandingLive do
       </section>
 
       <%!-- 3. ЗАРАБОТОК --%>
-      <section id="earnings" class="py-20 lg:py-28 bg-primary-50 dark:bg-primary-900">
+      <section id="earnings" data-spray-section data-spray-dir="rtl" class="py-20 lg:py-28 bg-primary-50 dark:bg-primary-900">
+        <div class="spray-overlay" aria-hidden="true"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
           <div class="text-center mb-14">
             <h2 class="font-display text-4xl sm:text-5xl font-extrabold mb-4 text-primary-900 dark:text-white tracking-tight">Сколько можно зарабатывать</h2>
@@ -224,7 +240,8 @@ defmodule PaintingCrewWeb.LandingLive do
       </section>
 
       <%!-- 4. ЧТО ВХОДИТ --%>
-      <section id="what-you-get" class="py-20 lg:py-28">
+      <section id="what-you-get" data-spray-section data-spray-dir="ltr" class="py-20 lg:py-28">
+        <div class="spray-overlay" aria-hidden="true"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
           <div class="text-center mb-14">
             <h2 class="font-display text-4xl sm:text-5xl font-extrabold mb-4 text-primary-900 dark:text-white tracking-tight">Что входит в запуск</h2>
@@ -240,7 +257,8 @@ defmodule PaintingCrewWeb.LandingLive do
       </section>
 
       <%!-- 5. КАК ПРОХОДИТ --%>
-      <section id="how-it-works" class="py-20 lg:py-28 bg-primary-50 dark:bg-primary-900">
+      <section id="how-it-works" data-spray-section data-spray-dir="rtl" class="py-20 lg:py-28 bg-primary-50 dark:bg-primary-900">
+        <div class="spray-overlay" aria-hidden="true"></div>
         <div class="max-w-5xl mx-auto px-4 sm:px-6">
           <div class="text-center mb-14">
             <h2 class="font-display text-4xl sm:text-5xl font-extrabold mb-4 text-primary-900 dark:text-white tracking-tight">Как проходит запуск</h2>
@@ -259,7 +277,8 @@ defmodule PaintingCrewWeb.LandingLive do
       </section>
 
       <%!-- 6. ПРИМЕРЫ РАБОТ --%>
-      <section id="examples" class="py-20 lg:py-28">
+      <section id="examples" data-spray-section data-spray-dir="ltr" class="py-20 lg:py-28">
+        <div class="spray-overlay" aria-hidden="true"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
           <div class="text-center mb-14">
             <h2 class="font-display text-4xl sm:text-5xl font-extrabold mb-4 text-primary-900 dark:text-white tracking-tight">Примеры работ</h2>
@@ -274,7 +293,8 @@ defmodule PaintingCrewWeb.LandingLive do
       </section>
 
       <%!-- 7. ОБОРУДОВАНИЕ --%>
-      <section id="equipment" class="py-20 lg:py-28 bg-primary-50 dark:bg-primary-900">
+      <section id="equipment" data-spray-section data-spray-dir="rtl" class="py-20 lg:py-28 bg-primary-50 dark:bg-primary-900">
+        <div class="spray-overlay" aria-hidden="true"></div>
         <div class="max-w-5xl mx-auto px-4 sm:px-6">
           <div class="grid lg:grid-cols-2 gap-10 items-center">
             <div>
@@ -296,7 +316,8 @@ defmodule PaintingCrewWeb.LandingLive do
       </section>
 
       <%!-- 8. СКОРОСТЬ --%>
-      <section id="speed" class="py-20 lg:py-28" phx-hook="SpeedBar">
+      <section id="speed" data-spray-section data-spray-dir="ltr" class="py-20 lg:py-28" phx-hook="SpeedBar">
+        <div class="spray-overlay" aria-hidden="true"></div>
         <div class="max-w-4xl mx-auto px-4 sm:px-6">
           <div class="text-center mb-14">
             <h2 class="font-display text-4xl sm:text-5xl font-extrabold mb-4 text-primary-900 dark:text-white tracking-tight">Почему это быстрее</h2>
@@ -340,7 +361,8 @@ defmodule PaintingCrewWeb.LandingLive do
       </section>
 
       <%!-- 9. ОТЗЫВЫ --%>
-      <section id="testimonials" class="py-20 lg:py-28 bg-primary-50 dark:bg-primary-900">
+      <section id="testimonials" data-spray-section data-spray-dir="rtl" class="py-20 lg:py-28 bg-primary-50 dark:bg-primary-900">
+        <div class="spray-overlay" aria-hidden="true"></div>
         <div class="max-w-5xl mx-auto px-4 sm:px-6">
           <div class="text-center mb-14">
             <h2 class="font-display text-4xl sm:text-5xl font-extrabold mb-4 text-primary-900 dark:text-white tracking-tight">Отзывы и кейсы</h2>
@@ -364,7 +386,8 @@ defmodule PaintingCrewWeb.LandingLive do
       </section>
 
       <%!-- 10. СТОИМОСТЬ --%>
-      <section id="pricing" class="py-20 lg:py-28">
+      <section id="pricing" data-spray-section data-spray-dir="ltr" class="py-20 lg:py-28">
+        <div class="spray-overlay" aria-hidden="true"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
           <div class="text-center mb-14">
             <h2 class="font-display text-4xl sm:text-5xl font-extrabold mb-4 text-primary-900 dark:text-white tracking-tight">Пакеты запуска</h2>
@@ -421,7 +444,8 @@ defmodule PaintingCrewWeb.LandingLive do
       </section>
 
       <%!-- 11. FAQ --%>
-      <section id="faq" class="py-20 lg:py-28 bg-primary-50 dark:bg-primary-900">
+      <section id="faq" data-spray-section data-spray-dir="rtl" class="py-20 lg:py-28 bg-primary-50 dark:bg-primary-900">
+        <div class="spray-overlay" aria-hidden="true"></div>
         <div class="max-w-4xl mx-auto px-4 sm:px-6">
           <div class="text-center mb-14">
             <h2 class="font-display text-4xl sm:text-5xl font-extrabold mb-4 text-primary-900 dark:text-white tracking-tight">Частые вопросы</h2>
@@ -436,7 +460,8 @@ defmodule PaintingCrewWeb.LandingLive do
       </section>
 
       <%!-- 12. ФИНАЛЬНЫЙ CTA --%>
-      <section id="book" class="py-20 lg:py-28 bg-[#051025] text-white relative overflow-hidden grain">
+      <section id="book" data-spray-section data-spray-dir="ltr" class="py-20 lg:py-28 bg-[#051025] text-white relative overflow-hidden grain">
+        <div class="spray-overlay" aria-hidden="true"></div>
         <div class="absolute inset-0 opacity-10" aria-hidden="true">
           <div class="absolute top-1/2 left-1/2 w-[800px] h-[800px] bg-primary-600 rounded-full blur-[200px] -translate-x-1/2 -translate-y-1/2"></div>
         </div>
